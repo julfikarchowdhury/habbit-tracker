@@ -10,7 +10,6 @@ const Quotes = () => {
       try {
         const response = await fetch("https://dummyjson.com/quotes/random");
         const data = await response.json();
-
         setQuoteData(data);
         setLoading(false);
       } catch (err) {
@@ -23,18 +22,18 @@ const Quotes = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="loading">Loading...</div>;
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <div className="error">{error}</div>;
   }
 
   return (
     <div className="card">
-      <div className="card-body">
+      <div className="quotes-container card-body">
         <p className="card-text">"{quoteData.quote}"</p>
-        <footer className="blockquote-footer">{quoteData.author}</footer>
+        <footer className="quote-author"><strong>--</strong>&nbsp;{quoteData.author}</footer>
       </div>
     </div>
   );

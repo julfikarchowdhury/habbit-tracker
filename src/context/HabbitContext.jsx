@@ -32,7 +32,7 @@ export const HabitProvider = ({ children }) => {
 
   const handleCheckIn = (habitId) => {
     setHabits((habits) =>
-        habits.map((habit) =>
+      habits.map((habit) =>
         habit.id === habitId ? { ...habit, streak: habit.streak + 1 } : habit
       )
     );

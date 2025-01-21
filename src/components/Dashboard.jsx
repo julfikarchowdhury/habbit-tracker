@@ -1,23 +1,35 @@
-import React, { useContext, useState } from "react";
-import Quotes from "./Quotes";
-import HabitCard from "./HabitCard";
+import React, { useContext } from "react";
 import { HabitContext } from "../context/HabbitContext";
+import HabitCard from "./HabitCard";
 import HabitForm from "./HabitForm";
+import Navbar from "./Navbar"; // Navbar component
+import Quotes from "./Quotes";
+
 const Dashboard = () => {
-  const { habits, handleCheckIn, addHabit } = useContext(HabitContext); // Access the context directly
+  const { habits, handleCheckIn } = useContext(HabitContext);
 
   return (
-    <div className="container mt-4">
-      <Quotes />
-      <h2 className="mb-3">Habit Tracker</h2>
-      <div className="row">
-        {habits.map((habit) => (
-          <div className="col-md-4" key={habit.id}>
-            <HabitCard habit={habit} onCheckIn={handleCheckIn} />
+    <div className="dashboard-container">
+      <Navbar />
+      <div className="dashboard-content">
+        <div className="habit-cards">
+          <h2 className="section-title header">Your Habits</h2>
+          <div className="row">
+            {habits.map((habit) => (
+              <div className="col-md-4" key={habit.id}>
+                <HabitCard habit={habit} onCheckIn={handleCheckIn} />
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+
+        <div className="right-section">
+          <div className="quote-form-wrapper">
+            <Quotes />
+            <HabitForm />
+          </div>
+        </div>
       </div>
-      <HabitForm />
     </div>
   );
 };

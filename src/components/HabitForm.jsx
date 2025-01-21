@@ -19,6 +19,7 @@ const HabitForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <h2 className="header mb-2">Add Habit</h2>
       <div>
         <input
           type="text"
