@@ -1,21 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Quotes from "./Quotes";
 import HabitCard from "./HabitCard";
-
+import { HabitContext } from "../context/HabbitContext";
+import HabitForm from "./HabitForm";
 const Dashboard = () => {
-  const [habits, setHabits] = useState([
-    { id: 1, name: "Exercise", category: "Health", streak: 5 },
-    { id: 2, name: "Read a Book", category: "Learning", streak: 3 },
-    { id: 3, name: "Drink Water", category: "Health", streak: 7 },
-  ]);
-
-  const handleCheckIn = (habitId) => {
-    setHabits((prevHabits) =>
-      prevHabits.map((habit) =>
-        habit.id === habitId ? { ...habit, streak: habit.streak + 1 } : habit
-      )
-    );
-  };
+  const { habits, handleCheckIn, addHabit } = useContext(HabitContext); // Access the context directly
 
   return (
     <div className="container mt-4">
@@ -28,6 +17,7 @@ const Dashboard = () => {
           </div>
         ))}
       </div>
+      <HabitForm />
     </div>
   );
 };

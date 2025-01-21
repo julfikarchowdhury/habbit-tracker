@@ -1,9 +1,12 @@
 import Dashboard from "./components/Dashboard";
-import './assets/style.css'
+import "./assets/style.css";
+import { HabitProvider } from "./context/HabbitContext";
 function App() {
   return (
     <>
-      <Dashboard />
+      <HabitProvider>
+        <Dashboard />
+      </HabitProvider>
     </>
   );
 }
