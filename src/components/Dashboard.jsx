@@ -1,13 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { HabitContext } from "../context/HabbitContext";
 import HabitCard from "./HabitCard";
 import HabitForm from "./HabitForm";
 import Navbar from "./Navbar"; // Navbar component
 import Quotes from "./Quotes";
+import Modal from "./Modal";
 
 const Dashboard = () => {
   const { habits, handleCheckIn } = useContext(HabitContext);
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState({ title: "", body: "" });
+  const handleShowModal = (card) => {
+    setModalContent({ title: card.title, body: card.details });
+    setShowModal(true);
+  };
 
+  const handleCloseModal = () => setShowModal(false);
   return (
     <div className="dashboard-container">
       <Navbar />
@@ -17,7 +25,7 @@ const Dashboard = () => {
           <div className="row">
             {habits.map((habit) => (
               <div className="col-md-4" key={habit.id}>
-                <HabitCard habit={habit} onCheckIn={handleCheckIn} />
+                <HabitCard habit={habit} onCheckIn={handleCheckIn}onShowModal={handleShowModal} />
               </div>
             ))}
           </div>
@@ -30,6 +38,13 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+      <Modal
+        show={showModal}
+        handleClose={handleCloseModal}
+       
+      >
+        <p>{modalContent.body}</p>
+      </Modal>
     </div>
   );
 };
