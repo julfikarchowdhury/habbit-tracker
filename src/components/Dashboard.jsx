@@ -2,16 +2,17 @@ import React, { useContext, useState } from "react";
 import { HabitContext } from "../context/HabbitContext";
 import HabitCard from "./HabitCard";
 import HabitForm from "./HabitForm";
-import Navbar from "./Navbar"; // Navbar component
+import Navbar from "./Navbar";
 import Quotes from "./Quotes";
 import Modal from "./Modal";
 
 const Dashboard = () => {
-  const { habits, handleCheckIn } = useContext(HabitContext);
+  const { habits, handleCheckIn,handleDelete } = useContext(HabitContext);
+
   const [showModal, setShowModal] = useState(false);
-  const [modalContent, setModalContent] = useState({ title: "", body: "" });
-  const handleShowModal = (card) => {
-    setModalContent({ title: card.title, body: card.details });
+  const [modalContent, setModalContent] = useState({ body: "" });
+  const handleShowModal = (description) => {
+    setModalContent({ body: description });
     setShowModal(true);
   };
 
@@ -25,7 +26,12 @@ const Dashboard = () => {
           <div className="row">
             {habits.map((habit) => (
               <div className="col-md-4" key={habit.id}>
-                <HabitCard habit={habit} onCheckIn={handleCheckIn}onShowModal={handleShowModal} />
+                <HabitCard
+                  habit={habit}
+                  onCheckIn={handleCheckIn}
+                  onDelete={handleDelete}
+                  onShowModal={handleShowModal}
+                />
               </div>
             ))}
           </div>
@@ -38,11 +44,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <Modal
-        show={showModal}
-        handleClose={handleCloseModal}
-       
-      >
+      <Modal show={showModal} handleClose={handleCloseModal}>
         <p>{modalContent.body}</p>
       </Modal>
     </div>

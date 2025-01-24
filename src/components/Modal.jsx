@@ -8,17 +8,12 @@ function Modal({ show, handleClose, title, children }) {
     <div className="modal-overlay">
       <div className="modal">
         <div className="modal-header">
-          <h2>{title}</h2>
+          <h2>Description</h2>
           <button className="close-btn" onClick={handleClose}>
             &times;
           </button>
         </div>
         <div className="modal-body">{children}</div>
-        <div className="modal-footer">
-          <button className="btn" onClick={handleClose}>
-            Close
-          </button>
-        </div>
       </div>
     </div>
   );

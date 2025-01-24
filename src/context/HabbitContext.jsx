@@ -1,35 +1,16 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 export const HabitContext = createContext();
 
 export const HabitProvider = ({ children }) => {
-  const [habits, setHabits] = useState([
-    {
-      id: 1,
-      name: "Exercise",
-      category: "Health",
-      description:
-        "no habit will work if you dont have any intention to be good idiot",
-      streak: 5,
-    },
-    {
-      id: 2,
-      name: "Read a Book",
-      category: "Learning",
-      description:
-        "no habit will work if you dont have any intention to be good idiot",
-      streak: 3,
-    },
-    {
-      id: 3,
-      name: "Drink Water",
-      category: "Health",
-      description:
-        "no habit will work if you dont have any intention to be good idiot",
-      streak: 7,
-    },
-  ]);
+  const [habits, setHabits] = useState(() => {
+    const storedHabits = localStorage.getItem("habits");
+    return storedHabits ? JSON.parse(storedHabits) : [];
+  });
 
+  useEffect(() => {
+    localStorage.setItem("habits", JSON.stringify(habits));
+  }, [habits]);
   const handleCheckIn = (habitId) => {
     setHabits((habits) =>
       habits.map((habit) =>
@@ -43,9 +24,13 @@ export const HabitProvider = ({ children }) => {
       { id: habits.length + 1, name, category, description, streak: 0 },
     ]);
   };
-
+  const handleDelete = (habitId) => {
+    setHabits((habits) => habits.filter((habit) => habit.id !== habitId));
+  };
   return (
-    <HabitContext.Provider value={{ habits, handleCheckIn, addHabit }}>
+    <HabitContext.Provider
+      value={{ habits, handleCheckIn, addHabit, handleDelete }}
+    >
       {children}
     </HabitContext.Provider>
   );
