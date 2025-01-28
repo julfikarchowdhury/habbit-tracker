@@ -11,17 +11,40 @@ export const HabitProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem("habits", JSON.stringify(habits));
   }, [habits]);
+  const getTodayDate = () => {
+    return new Date().toISOString().split("T")[0]; // Get YYYY-MM-DD format
+  };
+
   const handleCheckIn = (habitId) => {
+    const today = getTodayDate();
     setHabits((habits) =>
-      habits.map((habit) =>
-        habit.id === habitId ? { ...habit, streak: habit.streak + 1 } : habit
-      )
+      habits.map((habit) => {
+        if (habit.id === habitId) {
+          if (habit.lastCheckIn === today) {
+            alert("You already checked in today!");
+            return habit;
+          }
+          return {
+            ...habit,
+            streak: habit.streak + 1,
+            lastCheckIn: today,
+          };
+        }
+        return habit;
+      })
     );
   };
   const addHabit = (name, category, description) => {
     setHabits([
       ...habits,
-      { id: habits.length + 1, name, category, description, streak: 0 },
+      {
+        id: habits.length + 1,
+        name,
+        category,
+        description,
+        streak: 0,
+        lastCheckIn: null,
+      },
     ]);
   };
   const handleDelete = (habitId) => {

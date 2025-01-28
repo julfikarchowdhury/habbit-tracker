@@ -5,6 +5,7 @@ import HabitForm from "./HabitForm";
 import Navbar from "./Navbar";
 import Quotes from "./Quotes";
 import Modal from "./Modal";
+import "../assets/style.css";
 
 const Dashboard = () => {
   const { habits, handleCheckIn,handleDelete } = useContext(HabitContext);

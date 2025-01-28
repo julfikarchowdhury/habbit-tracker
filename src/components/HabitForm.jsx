@@ -35,14 +35,22 @@ const HabitForm = () => {
       </div>
 
       <div>
-        <input
-          type="text"
-          placeholder="Habit Category"
+        <select
           {...register("category", {
             required: "Category is required",
-            maxLength: { value: 100, message: "Category name is too long" },
           })}
-        />
+        >
+          <option value="">Select a Category</option>
+          <option value="Health">Health</option>
+          <option value="Fitness">Fitness</option>
+          <option value="Productivity">Productivity</option>
+          <option value="Learning">Learning</option>
+          <option value="Finance">Finance</option>
+          <option value="Relationships">Relationships</option>
+          <option value="Hobbies">Hobbies</option>
+          <option value="Self-Care">Self-Care</option>
+          <option value="Other">Other</option>
+        </select>
         {errors.category && (
           <span className="error-message">{errors.category.message}</span>
         )}
