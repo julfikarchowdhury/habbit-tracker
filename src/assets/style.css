@@ -56,6 +56,14 @@ body {
   margin-bottom: 1.5em;
 }
 /* Navbar */
+.active {
+  font-weight: bold;
+  color: var(--accent-color) !important;
+}
+.nav-link {
+  text-decoration: none;
+  color: black;
+}
 .navbar {
   display: flex;
   justify-content: space-between;
