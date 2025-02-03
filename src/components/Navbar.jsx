@@ -9,8 +9,6 @@ const Navbar = () => {
     setTheme(newTheme);
     document.documentElement.setAttribute("data-theme", newTheme);
   };
-  const location = useLocation();
-  console.log(location);
 
   return (
     <div className="navbar">

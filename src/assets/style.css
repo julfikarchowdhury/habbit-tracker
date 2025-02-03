@@ -256,6 +256,7 @@ form {
 }
 
 form input,
+form select,
 form textarea {
   width: 100%;
   padding: 15px;

@@ -25,7 +25,6 @@ const Analytics = () => {
   };
 
   return (
-    <>
       <div className="analytics-container">
         <Navbar />
         <h1 className="analytics-title">Habit Analytics</h1>
@@ -57,7 +56,6 @@ const Analytics = () => {
           <CategoryChart data={calculateCategoryStats()} />
         </div>
       </div>
-    </>
   );
 };
 
