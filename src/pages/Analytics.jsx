@@ -26,10 +26,9 @@ const Analytics = () => {
 
   return (
     <>
-      <Navbar />
       <div className="analytics-container">
+        <Navbar />
         <h1 className="analytics-title">Habit Analytics</h1>
-
         {/* Header Section */}
         <div className="analytics-header">
           <div className="analytics-card">
@@ -52,7 +51,6 @@ const Analytics = () => {
             </ul>
           </div>
         </div>
-
         {/* Charts Section */}
         <div className="analytics-charts">
           <h2>Habits by Category</h2>
