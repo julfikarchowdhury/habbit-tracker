@@ -19,7 +19,6 @@ body {
   flex-direction: column;
   gap: 2rem;
   padding: 30px 40px;
-
 }
 
 .analytics-title {
@@ -30,7 +29,7 @@ body {
 }
 
 /* Header Section */
-.analytics-header {
+.analytics-summary {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
@@ -71,6 +70,8 @@ body {
   padding: 2rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  justify-content: space-around;
 }
 
 .analytics-charts h2 {
@@ -80,7 +81,13 @@ body {
   color: var(--primary-btn);
   margin-bottom: 1rem;
 }
-
+.analytics-charts ul {
+  list-style: none;
+  gap: 10px;
+  line-height: 25px;
+}
+.analytics-charts .all-categories {text-align: center;
+}
 .analytics-charts:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
@@ -88,7 +95,7 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .analytics-header {
+  .analytics-summary {
     grid-template-columns: 1fr;
   }
 }

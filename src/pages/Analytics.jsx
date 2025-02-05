@@ -25,37 +25,39 @@ const Analytics = () => {
   };
 
   return (
-      <div className="analytics-container">
-        <Navbar />
-        <h1 className="analytics-title">Habit Analytics</h1>
-        {/* Header Section */}
-        <div className="analytics-header">
-          <div className="analytics-card">
-            <h2>Total Habits</h2>
-            <p className="analytics-value">{habits.length}</p>
-          </div>
-          <div className="analytics-card">
-            <h2>Top Habit</h2>
-            <p className="analytics-value">{getTopStreak().name || "None"}</p>
-            <p>Streak: {getTopStreak().streak || 0} days</p>
-          </div>
-          <div className="analytics-card">
-            <h2>Categories</h2>
-            <ul className="">
-              {calculateCategoryStats().map((category, index) => (
-                <li key={index} className="mt-2">
-                  {category.category}: {category.count} habits
-                </li>
-              ))}
-            </ul>
-          </div>
+    <div className="analytics-container">
+      <Navbar />
+      <h1 className="header">Habit Analytics</h1>
+      {/* Header Section */}
+      <div className="analytics-summary">
+        <div className="analytics-card">
+          <h2>Total Habits</h2>
+          <p className="analytics-value">{habits.length}</p>
         </div>
-        {/* Charts Section */}
-        <div className="analytics-charts">
+        <div className="analytics-card">
+          <h2>Top Habit</h2>
+          <p className="analytics-value">{getTopStreak().name || "None"}</p>
+          <p>Streak: {getTopStreak().streak || 0} days</p>
+        </div>
+      </div>
+      {/* Charts Section */}
+      <div className="analytics-charts">
+        <div className="all-categories">
+          <h2>All Categories</h2>
+          <ul>
+            {calculateCategoryStats().map((category, index) => (
+              <li key={index} className="mt-2">
+                {category.category}: {category.count} habits
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
           <h2>Habits by Category</h2>
           <CategoryChart data={calculateCategoryStats()} />
         </div>
       </div>
+    </div>
   );
 };
 
